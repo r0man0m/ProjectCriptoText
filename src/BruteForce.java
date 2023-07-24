@@ -10,6 +10,7 @@ public class BruteForce {
     public static void force (String text, int sizeKeys) throws IOException {
         boolean isFind = false;
         String result = "";
+        int key = 0;
         Path pathDictionary = Paths.get("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\dictionary.txt");
         List<String> listDictionary = Files.readAllLines(pathDictionary);
         for (int i = 1; i <= sizeKeys; i++) {
@@ -17,17 +18,21 @@ public class BruteForce {
             String [] arrText = obj.decryptionMethod(text).split(" ");
             for (String S: arrText
                  ) {
-                for (int j = 0; j < listDictionary.size(); j++) {
+                for (int j = 1; j < listDictionary.size(); j++) {
                     if (listDictionary.get(j).contains(S)) {
                         isFind = true;
+                        key = i;
+                        break;
 
                     }
                 }
-
+                    if(isFind) {
+                        break;
+                    }
             }
             if(isFind) {
 
-                System.out.println(obj.decryptionMethod(text));
+                System.out.println(new Encryption(key).decryptionMethod(text));
                 break;
             }
         }
