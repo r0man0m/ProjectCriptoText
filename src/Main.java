@@ -18,5 +18,9 @@ public class Main {
         System.out.println("Decryption text");
         System.out.println();
         System.out.println(object.decryptionMethod(object.encryptionMethod(textString)));
+        System.out.println("Brute Force Method");
+        System.out.println("Enter maximum volume of key");
+        key = scanner.nextInt();
+        BruteForce.force(object.decryptionMethod(object.encryptionMethod(textString)),key );
     }
 }
