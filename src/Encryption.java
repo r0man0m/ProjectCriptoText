@@ -19,7 +19,7 @@ public class Encryption {
         }
         return new String(word);
     }
-    public String decryptyonMethod(String text) {
+    public String decryptionMethod(String text) {
         char[]word = text.toCharArray();
         for (int i = 0; i < word.length; i++) {
             if(word[i] >= 1040 && word[i] <= 1071) {

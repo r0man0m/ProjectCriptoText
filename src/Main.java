@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Enter key");
         Scanner scanner = new Scanner(System.in);
         int key = scanner.nextInt();
-        Path textPath = Paths.get("C:\\Tests\\Text.txt");
+        Path textPath = Paths.get("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\Text.txt");
         String textString = Files.readString(textPath); // Get text as String
         Encryption object = new Encryption(key);
         System.out.println("Encryption text");
@@ -17,6 +17,6 @@ public class Main {
         System.out.println(object.encryptionMethod(textString));
         System.out.println("Decryption text");
         System.out.println();
-        System.out.println(object.decryptyonMethod(object.encryptionMethod(textString)));
+        System.out.println(object.decryptionMethod(object.encryptionMethod(textString)));
     }
 }
