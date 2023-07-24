@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int key = scanner.nextInt();
         Path textPath = Paths.get("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\Text.txt");
-        String textString = Files.readString(textPath); // Get text as String
+        String textString = Files.readString(textPath);
         Encryption object = new Encryption(key);
         System.out.println("Encryption text");
         System.out.println();
