@@ -20,9 +20,7 @@ public class BruteForce {
                  ) {
                 for (int j = 1; j < listDictionary.size(); j++) {
                     if (listDictionary.get(j).contains(S)) {
-
                         count++;
-
                     }
                 }
                     if(count > 5) {
@@ -38,6 +36,5 @@ public class BruteForce {
             }
         }
     }
-
 
 }
