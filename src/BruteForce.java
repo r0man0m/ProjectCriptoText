@@ -9,7 +9,7 @@ public class BruteForce {
 
     public static void force (String text, int sizeKeys) throws IOException {
         boolean isFind = false;
-        String result = "";
+        int count = 0;
         int key = 0;
         Path pathDictionary = Paths.get("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\dictionary.txt");
         List<String> listDictionary = Files.readAllLines(pathDictionary);
@@ -20,13 +20,14 @@ public class BruteForce {
                  ) {
                 for (int j = 1; j < listDictionary.size(); j++) {
                     if (listDictionary.get(j).contains(S)) {
-                        isFind = true;
-                        key = i;
-                        break;
+
+                        count++;
 
                     }
                 }
-                    if(isFind) {
+                    if(count > 5) {
+                        isFind = true;
+                        key = i;
                         break;
                     }
             }
