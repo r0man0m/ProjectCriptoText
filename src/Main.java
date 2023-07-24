@@ -12,6 +12,11 @@ public class Main {
         Path textPath = Paths.get("C:\\Tests\\Text.txt");
         String textString = Files.readString(textPath); // Get text as String
         Encryption object = new Encryption(key);
+        System.out.println("Encryption text");
+        System.out.println();
         System.out.println(object.encryptionMethod(textString));
+        System.out.println("Decryption text");
+        System.out.println();
+        System.out.println(object.decryptyonMethod(object.encryptionMethod(textString)));
     }
 }
