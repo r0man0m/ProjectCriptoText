@@ -7,10 +7,10 @@ public class Encryption {
         char[]word = text.toCharArray();
         for (int i = 0; i < word.length; i++) {
             if(word[i] >= 1040 && word[i] <= 1071) {
-                word[i] = (char) (module((word[i] - 1040 + key), 32) + 1040); // Big letter
+                word[i] = (char) (module((word[i] - 1040 + key), 33) + 1040); // Big letter
             }
             else if(word[i] >= 1072 && word[i] <= 1103) {
-                word[i] = (char) (module((word[i] - 1072 + key), 32) + 1072); // Small letter
+                word[i] = (char) (module((word[i] - 1072 + key), 33) + 1072); // Small letter
             }
             else if(word[i] >= 32 && word[i] <= 46) {
                 word[i] = (char) (module((word[i] - 32 + key), 15) + 32); // Symbols
@@ -23,10 +23,10 @@ public class Encryption {
         char[]word = text.toCharArray();
         for (int i = 0; i < word.length; i++) {
             if(word[i] >= 1040 && word[i] <= 1071) {
-                word[i] = (char) (module((word[i] - 1040 - key), 32) + 1040); // Big letter
+                word[i] = (char) (module((word[i] - 1040 - key), 33) + 1040); // Big letter
             }
             else if(word[i] >= 1072 && word[i] <= 1103) {
-                word[i] = (char) (module((word[i] - 1072 - key), 32) + 1072); // Small letter
+                word[i] = (char) (module((word[i] - 1072 - key), 33) + 1072); // Small letter
             }
             else if(word[i] >= 32 && word[i] <= 46) {
                 word[i] = (char) (module((word[i] - 32 - key), 15) + 32); // Symbols
