@@ -4,11 +4,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class Dictionary {
     private  final int SIZE;
     private  final Path PATH;
-    private  char firstLetter;
+    private char firstLetter;
     private final HashMap<Character, ArrayList<String>> DICTIONARYMAP;
     public Dictionary(int size, Path path, char firstLetter) {
         SIZE = size;
@@ -17,21 +18,31 @@ public class Dictionary {
         DICTIONARYMAP = new HashMap<>();
     }
     public void setDictionary() throws IOException {
+        String first;
         List<String> list = Files.readAllLines(PATH);
-        String letterToString = String.valueOf(firstLetter);
-        ArrayList<String>arrayList;
-        int counter = 0;
         for (int i = 0; i < SIZE; i++) {
-            arrayList = new ArrayList<>();
-            for (int j = counter; j < list.size(); j++) {
-                if (list.get(j).startsWith(letterToString)) {
-                    arrayList.add(list.get(j));
-                    counter++;
+            first = String.valueOf(firstLetter);
+            ArrayList<String> fullListForNextLetter = new ArrayList<>();
+            for (String S:list
+                 ) {
+                if(S.startsWith(first)) {
+                    fullListForNextLetter.add(S);
                 }
-                DICTIONARYMAP.put(firstLetter, arrayList);
             }
-            firstLetter++;
-            letterToString = String.valueOf(firstLetter);
+            ArrayList<String> splitList = new ArrayList<>();
+            for (String S: fullListForNextLetter
+                 ) {
+                String[]arr = S.split(" ");
+                for (String A: arr
+                     ) {
+                    if(A.startsWith(first)) {
+                        splitList.add(A.toLowerCase(Locale.ROOT));
+                    }
+                }
+            }
+                DICTIONARYMAP.put(firstLetter, splitList);
+                firstLetter++;
+
         }
     }
     public ArrayList<String> getDictionary(char letter) {
