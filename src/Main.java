@@ -19,7 +19,8 @@ public class Main {
         Encryption object = new Encryption(key);
         System.out.println("Encryption text");
         System.out.println();
-        System.out.println(object.encryptionMethod(textString));
+        String encryptionText = object.encryptionMethod(textString);
+        System.out.println(encryptionText);
         System.out.println("Decryption text");
         System.out.println();
         System.out.println(object.decryptionMethod(object.encryptionMethod(textString)));
@@ -30,8 +31,15 @@ public class Main {
         size = scanner.nextInt();
         System.out.println("Enter first letter of alphabet");
         firstLetterString = scanner1.nextLine();
-        BruteForce.force(object.encryptionMethod(textString),key, size, path, firstLetterString.charAt(0));
-
+        int ok = 0;
+        while (ok == 0) {
+            BruteForce bruteForce = new BruteForce();
+            bruteForce.force(encryptionText, key, size, path, firstLetterString.charAt(0));
+            System.out.println("Everything is OK ?");
+            System.out.println("If the text is not accurate enter 0, else enter 1");
+            key = bruteForce.returnKey();
+            ok = scanner.nextInt();
+        }
 
     }
 }

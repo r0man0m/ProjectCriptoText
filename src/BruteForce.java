@@ -6,28 +6,30 @@ import java.util.Iterator;
 import java.util.ListIterator;
 
 public class BruteForce {
-    public static void force (String text, int sizeKeys, int sizeAlphabet, Path path, char firstLetter) throws IOException {
+    public static int key = 0;
+    public  void force (String text, int sizeKeys, int sizeAlphabet, Path path, char firstLetter) throws IOException {
         Dictionary dictionary = new Dictionary(sizeAlphabet, path, firstLetter);
         dictionary.setDictionary();
         int count;
         boolean isFind = false;
-        int key = 0;
-        for (int i = 1; i <= sizeKeys; i++) { // Get decryption text for next key
+
+        for (int i = 0; i < sizeKeys; i++) { // Get decryption text for next key
             count = 0;
             Encryption obj = new Encryption(i);
             String[] decryptionText = obj.decryptionMethod(text).toLowerCase().split(" "); // Get split array from decryption text
+            char first = firstLetter; // Set first letter
             for (int j = 0; j < sizeAlphabet; j++) {
-                ArrayList<String> listForNextLetter = dictionary.getDictionary(firstLetter); // Get list for next letter
+                ArrayList<String> listForNextLetter = dictionary.getDictionary(first); // Get list for next letter
                 for (int k = 0; k < decryptionText.length; k++) {
                     if(listForNextLetter.contains(decryptionText[k])) { //Search contains every word of text in list of next letter
                         count++; // if contains is exist, increment count
                     }
                 }
-                firstLetter++; // next letter
+                first++; // next letter
             }
-            if(count > 20) { // Check for contains words in the decryption text
+            if(count > (decryptionText.length / 10)) { // Check for contains words in the decryption text
                 isFind = true;
-                key = i;
+                key = i % sizeKeys;
                 break;
             }
 
@@ -35,11 +37,15 @@ public class BruteForce {
         if (isFind) {
             Encryption encryption = new Encryption(key);
             System.out.println(encryption.decryptionMethod(text));
+            System.out.println(key);
+
         }
         else {
             System.out.println("Not find");
         }
-
+    }
+    public int returnKey() {
+        return key;
     }
 
 }
