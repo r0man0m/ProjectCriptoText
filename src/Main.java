@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Path path = Paths.get("C:\\Tests\\dictionary.txt");
         int size;
+        int start = 0;
         System.out.println("Enter key");
         Scanner scanner = new Scanner(System.in);
         Scanner scanner1 = new Scanner(System.in);
@@ -34,10 +35,10 @@ public class Main {
         int ok = 0;
         while (ok == 0) {
             BruteForce bruteForce = new BruteForce();
-            bruteForce.force(encryptionText, key, size, path, firstLetterString.charAt(0));
+            bruteForce.force(encryptionText, start, key, size, path, firstLetterString.charAt(0));
             System.out.println("Everything is OK ?");
             System.out.println("If the text is not accurate enter 0, else enter 1");
-            key = bruteForce.returnKey();
+            start = bruteForce.returnKey() + 1;
             ok = scanner.nextInt();
         }
 

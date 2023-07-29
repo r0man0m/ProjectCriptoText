@@ -7,13 +7,13 @@ import java.util.ListIterator;
 
 public class BruteForce {
     public static int key = 0;
-    public  void force (String text, int sizeKeys, int sizeAlphabet, Path path, char firstLetter) throws IOException {
+    public  void force (String text,int start, int sizeKeys, int sizeAlphabet, Path path, char firstLetter) throws IOException {
         Dictionary dictionary = new Dictionary(sizeAlphabet, path, firstLetter);
         dictionary.setDictionary();
         int count;
         boolean isFind = false;
 
-        for (int i = 0; i < sizeKeys; i++) { // Get decryption text for next key
+        for (int i = start; i < sizeKeys; i++) { // Get decryption text for next key
             count = 0;
             Encryption obj = new Encryption(i);
             String[] decryptionText = obj.decryptionMethod(text).toLowerCase().split(" "); // Get split array from decryption text
@@ -29,7 +29,7 @@ public class BruteForce {
             }
             if(count > (decryptionText.length / 10)) { // Check for contains words in the decryption text
                 isFind = true;
-                key = i % sizeKeys;
+                key = i;
                 break;
             }
 
@@ -37,7 +37,7 @@ public class BruteForce {
         if (isFind) {
             Encryption encryption = new Encryption(key);
             System.out.println(encryption.decryptionMethod(text));
-            System.out.println(key);
+            System.out.println("Your key is " + key);
 
         }
         else {
