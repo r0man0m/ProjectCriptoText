@@ -17,7 +17,7 @@ public class Main {
                 Scanner scanner = new Scanner(System.in);
                 choice = scanner.nextInt();
                 Encryption object;
-                String encryptionText = "";
+                String encryptionText;
                 Path encryptPath = Path.of("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\EncryptionText.txt");
                 Path pathDict = Path.of("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\dictionary.txt");
                 switch (choice) {
@@ -64,6 +64,9 @@ public class Main {
                                 System.out.println();
                                 object = new Encryption(key2);
                                 System.out.println(object.decryptionMethod(object.encryptionMethod(Files.readString(path2))));
+                                Files.delete(encryptPath);
+                                Files.createFile(encryptPath);
+                                Files.write(encryptPath,object.decryptionMethod(object.encryptionMethod(Files.readString(path2))).getBytes(StandardCharsets.UTF_8));
                                 break;
                         }
                         break;
@@ -79,11 +82,12 @@ public class Main {
                         System.out.println("Enter the path to encrypted file");
                         Scanner scanner3 = new Scanner(System.in);
                         String pathToEncrypt = scanner3.nextLine();
-                        Path path1 = Path.of(pathToEncrypt);
                         int ok = 0;
                         while (ok == 0) {
                             BruteForce bruteForce = new BruteForce();
+                            System.out.println("Wait please...");
                             bruteForce.force(Files.readString(encryptPath), start, key, size, pathDict, firstLetterString.charAt(0));
+
                             System.out.println("Everything is OK ?");
                             System.out.println("If the text is not accurate enter 0, else enter 1");
                             start = bruteForce.returnKey() + 1;
