@@ -19,6 +19,7 @@ public class Main {
                 Encryption object;
                 String encryptionText = "";
                 Path encryptPath = Path.of("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\EncryptionText.txt");
+                Path pathDict = Path.of("C:\\Users\\Roman\\IdeaProjects\\ProjectCriptoText\\dictionary.txt");
                 switch (choice) {
                     case 1:
                         Files.delete(encryptPath);
@@ -82,7 +83,7 @@ public class Main {
                         int ok = 0;
                         while (ok == 0) {
                             BruteForce bruteForce = new BruteForce();
-                            bruteForce.force(, start, key, size, encryptPath, firstLetterString.charAt(0));
+                            bruteForce.force(Files.readString(encryptPath), start, key, size, pathDict, firstLetterString.charAt(0));
                             System.out.println("Everything is OK ?");
                             System.out.println("If the text is not accurate enter 0, else enter 1");
                             start = bruteForce.returnKey() + 1;
